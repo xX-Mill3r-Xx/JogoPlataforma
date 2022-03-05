@@ -5,14 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rig;
+
+    private bool isJumping;
+    private bool doubleJumping;
+    private bool isAtacking;
+
     public Animator anim;
     public Transform point;
     public float radius;
     public float speed;
     public float jump;
-    private bool isJumping;
-    private bool doubleJumping;
-    private bool isAtacking;
+    public int health;
+
+    public LayerMask enemy_layer;
 
     void Start()
     {
@@ -59,8 +64,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    
-
     void Jump()
     {
         if (Input.GetButtonDown("Jump"))
@@ -77,6 +80,7 @@ public class Player : MonoBehaviour
                 anim.SetInteger("transicao", 2);
                 rig.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
                 doubleJumping = false;
+                //StartCoroutine(OnDoubleJumping());
             } 
         }
     }
@@ -88,19 +92,36 @@ public class Player : MonoBehaviour
             isAtacking = true;
             anim.SetInteger("transicao", 3);
 
-            Collider2D hit = Physics2D.OverlapCircle(point.position, radius);
+            Collider2D hit = Physics2D.OverlapCircle(point.position, radius, enemy_layer);
             if (hit != null)
             {
-
+                hit.GetComponent<Slime>().OnHit();
             }
             StartCoroutine(OnAttack());
         }
     }
 
+    //IEnumerator OnDoubleJumping()
+    //{
+    //    yield return new WaitForSeconds(0.30f);
+    //    doubleJumping = false;
+    //}
+
     IEnumerator OnAttack()
     {
         yield return new WaitForSeconds(0.13f);
         isAtacking = false;
+    }
+
+    void onHit()
+    {
+        anim.SetTrigger("hit");
+        health--;
+        if(health <= 0)
+        {
+            anim.SetTrigger("death");
+            //Game Over Aqui;
+        }
     }
 
     private void OnDrawGizmos()
@@ -114,5 +135,13 @@ public class Player : MonoBehaviour
         {
             isJumping = false;
         }   
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == 3)
+        {
+            onHit();
+        }
     }
 }
