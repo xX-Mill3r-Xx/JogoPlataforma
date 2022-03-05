@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private bool isJumping;
     private bool doubleJumping;
     private bool isAtacking;
+    private bool recovery;
 
     public Animator anim;
     public Transform point;
@@ -80,7 +81,6 @@ public class Player : MonoBehaviour
                 anim.SetInteger("transicao", 2);
                 rig.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
                 doubleJumping = false;
-                //StartCoroutine(OnDoubleJumping());
             } 
         }
     }
@@ -101,24 +101,27 @@ public class Player : MonoBehaviour
         }
     }
 
-    //IEnumerator OnDoubleJumping()
-    //{
-    //    yield return new WaitForSeconds(0.30f);
-    //    doubleJumping = false;
-    //}
-
     IEnumerator OnAttack()
     {
         yield return new WaitForSeconds(0.13f);
         isAtacking = false;
     }
 
-    void onHit()
+    float recovery_Count;
+    public void onHit()
     {
-        anim.SetTrigger("hit");
-        health--;
-        if(health <= 0)
+        recovery_Count += Time.deltaTime;
+
+        if (recovery_Count >= 1.8f)
         {
+            anim.SetTrigger("hit");
+            health--;
+            recovery_Count = 0f;
+        }
+        
+        if(health <= 0 && !recovery)
+        {
+            recovery = true;
             anim.SetTrigger("death");
             //Game Over Aqui;
         }
