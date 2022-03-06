@@ -95,7 +95,15 @@ public class Player : MonoBehaviour
             Collider2D hit = Physics2D.OverlapCircle(point.position, radius, enemy_layer);
             if (hit != null)
             {
-                hit.GetComponent<Slime>().OnHit();
+                if (hit.GetComponent<Slime>())
+                {
+                    hit.GetComponent<Slime>().OnHit();
+                }
+
+                if (hit.GetComponent<Goblin>())
+                {
+                    hit.GetComponent<Goblin>().OnHit();
+                }
             }
             StartCoroutine(OnAttack());
         }

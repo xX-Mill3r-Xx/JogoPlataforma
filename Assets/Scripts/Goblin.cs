@@ -9,7 +9,9 @@ public class Goblin : MonoBehaviour
 
     public bool isFront;
     private Vector2 direction;
+    private bool isDead;
 
+    public int health = 3;
     public bool isRight;
     public float stopDistance;
 
@@ -36,15 +38,21 @@ public class Goblin : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
         GetPlayer();
         OnMove();
+        
     }
 
     void OnMove()
     {
-        if (isFront)
+        if (isFront && !isDead)
         {
             anim.SetInteger("transicao",1);
             if (isRight)
@@ -67,7 +75,7 @@ public class Goblin : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(point.position, direction, maxVision);
 
-        if (hit.collider != null)
+        if (hit.collider != null && !isDead)
         {
             if (hit.transform.CompareTag("Player"))
             {
@@ -89,7 +97,21 @@ public class Goblin : MonoBehaviour
             if (hitBehind.transform.CompareTag("Player"))
             {
                 isRight = !isRight;
+                isFront = true;
             }
+        }
+    }
+
+    public void OnHit()
+    {
+        anim.SetTrigger("hit");
+        health--;
+        if (health <= 0)
+        {
+            isDead = true;
+            speed = 0;
+            anim.SetTrigger("death");
+            Destroy(gameObject, 1f);
         }
     }
 
@@ -103,5 +125,5 @@ public class Goblin : MonoBehaviour
         Gizmos.DrawRay(behind.position, -direction * maxVision);
     }
 
-
+    
 }
