@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 742692107}
   m_Layer: 0
   m_Name: stone
-  m_TagString: Untagged
+  m_TagString: stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1080,6 +1080,7 @@ GameObject:
   - component: {fileID: 1181327228}
   - component: {fileID: 1181327227}
   - component: {fileID: 1181327230}
+  - component: {fileID: 1181327231}
   m_Layer: 0
   m_Name: buttom
   m_TagString: Untagged
@@ -1200,6 +1201,19 @@ PolygonCollider2D:
       - {x: 0.6152649, y: -0.04690814}
       - {x: 0.21569443, y: -0.00039458275}
       - {x: -0.2214117, y: -0.0018231869}
+--- !u!114 &1181327231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181327226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62e1c46598ec754c89e3776567a909d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barriraAnim: {fileID: 1852649560}
 --- !u!1 &1504351742
 GameObject:
   m_ObjectHideFlags: 0
@@ -7497,7 +7511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852649559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0076194, y: -0.75, z: 0}
+  m_LocalPosition: {x: 6.007619, y: -0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
