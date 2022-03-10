@@ -6,6 +6,8 @@ public class Puzzle_Button : MonoBehaviour
 {
     private Animator anim;
     public Animator barriraAnim;
+    public BoxCollider2D box;
+    private bool isTrigger;
 
     private void Start()
     {
@@ -29,6 +31,10 @@ public class Puzzle_Button : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("stone"))
         {
             OnPressed();
+            if (!isTrigger)
+            {
+                box.enabled = true;
+            }
         }
     }
 
@@ -37,6 +43,10 @@ public class Puzzle_Button : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("stone"))
         {
             OnExit();
+            if (!isTrigger)
+            {
+                box.enabled = true;
+            }
         }
     }
 }

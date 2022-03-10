@@ -675,8 +675,8 @@ GameObject:
   m_Component:
   - component: {fileID: 742692106}
   - component: {fileID: 742692105}
-  - component: {fileID: 742692104}
   - component: {fileID: 742692107}
+  - component: {fileID: 742692104}
   m_Layer: 0
   m_Name: stone
   m_TagString: stone
@@ -684,8 +684,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &742692104
-BoxCollider2D:
+--- !u!58 &742692104
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -698,18 +698,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
-    newSize: {x: 0.5, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.25
 --- !u!212 &742692105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -795,7 +785,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &780797920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,10 +1187,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.6273663, y: -0.049635172}
+    - - {x: -0.34411883, y: -0.046242714}
       - {x: 0.6152649, y: -0.04690814}
-      - {x: 0.21569443, y: -0.00039458275}
-      - {x: -0.2214117, y: -0.0018231869}
+      - {x: 0.23265648, y: -0.025837898}
+      - {x: -0.19427228, y: -0.03065896}
 --- !u!114 &1181327231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,6 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barriraAnim: {fileID: 1852649560}
+  box: {fileID: 1852649563}
 --- !u!1 &1504351742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1476,7 @@ MonoBehaviour:
   point: {fileID: 481064466}
   radius: 0.07
   speed: 5
-  jump: 8
+  jump: 12
   health: 10
   enemy_layer:
     serializedVersion: 2
@@ -7491,7 +7482,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 9d2ae57d57e561e4a82ed71f6033b246, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
