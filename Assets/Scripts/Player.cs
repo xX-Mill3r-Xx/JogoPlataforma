@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private static Player instance;
+
     private Rigidbody2D rig;
 
     private bool isJumping;
@@ -19,6 +21,21 @@ public class Player : MonoBehaviour
     public int health;
 
     public LayerMask enemy_layer;
+
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -160,6 +177,11 @@ public class Player : MonoBehaviour
             collision.GetComponent<Animator>().SetTrigger("hit");
             GameController.instance.GetCoin();
             Destroy(collision.gameObject, 0.3f);
+        }
+
+        if(collision.gameObject.layer == 7)
+        {
+            GameController.instance.NextLevel();
         }
     }
 }
