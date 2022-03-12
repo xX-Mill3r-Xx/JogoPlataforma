@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     private static Player instance;
     private PlayerAudios playerAudios;
-
+    private health lifes;
     private Rigidbody2D rig;
 
     private bool isJumping;
@@ -19,22 +19,23 @@ public class Player : MonoBehaviour
     public float radius;
     public float speed;
     public float jump;
-    public int health;
+    //public int health;
 
     public LayerMask enemy_layer;
 
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(this);
         }
-        else
+        else if(instance != this)
         {
-            Destroy(gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         playerAudios = GetComponent<PlayerAudios>();
+        lifes = GetComponent<health>();
     }
 
     void Update()
@@ -145,15 +147,16 @@ public class Player : MonoBehaviour
         if (recovery_Count >= 1.8f)
         {
             anim.SetTrigger("hit");
-            health--;
+            lifes.life--;
             recovery_Count = 0f;
         }
         
-        if(health <= 0 && !recovery)
+        if(lifes.life <= 0 && !recovery)
         {
             recovery = true;
             anim.SetTrigger("death");
             //Game Over Aqui;
+            GameController.instance.ShowGameOver();
         }
     }
 

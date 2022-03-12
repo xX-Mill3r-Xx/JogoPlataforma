@@ -9,9 +9,12 @@ public class GameController : MonoBehaviour
     public int score;
     public Text scoreText;
     public static GameController instance;
+    public GameObject gameoverPannel;
 
     private void Awake()
     {
+
+        Time.timeScale = 1f;
         DontDestroyOnLoad(this);
 
         if(instance == null)
@@ -43,5 +46,16 @@ public class GameController : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void ShowGameOver()
+    {
+        Time.timeScale = 0f;
+        gameoverPannel.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
