@@ -43,11 +43,6 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("Moedas", score);
     }
 
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(1);
-    }
-
     public void ShowGameOver()
     {
         Time.timeScale = 0f;

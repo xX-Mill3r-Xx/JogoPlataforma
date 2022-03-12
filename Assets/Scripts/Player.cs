@@ -188,10 +188,6 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject, 0.3f);
         }
 
-        if(collision.gameObject.layer == 7)
-        {
-            GameController.instance.NextLevel();
-        }
 
         if (collision.gameObject.layer == 12)
         {
