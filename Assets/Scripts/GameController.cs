@@ -23,6 +23,11 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
         }
         
+        if(PlayerPrefs.GetInt("Moedas") > 0)
+        {
+            score += PlayerPrefs.GetInt("Moedas");
+            scoreText.text = "x " + score.ToString();
+        }
 
     }
 
@@ -31,6 +36,8 @@ public class GameController : MonoBehaviour
     {
         score++;
         scoreText.text = "x "+ score.ToString();
+
+        PlayerPrefs.SetInt("Moedas", score);
     }
 
     public void NextLevel()
