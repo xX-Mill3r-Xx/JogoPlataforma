@@ -183,5 +183,10 @@ public class Player : MonoBehaviour
         {
             GameController.instance.NextLevel();
         }
+
+        if (collision.gameObject.layer == 12)
+        {
+            PlayerPos.instance.CheckPoint();
+        }
     }
 }
